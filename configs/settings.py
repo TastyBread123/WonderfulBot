@@ -1,5 +1,5 @@
-token = '5500737402:AAFE4wS8L6JUDIaj-ZVFRmaI7_R3zm_k2IA'
-dir = r'C:\!python\проекты\bot_chat'
+token = ''
+dir = r''
 version = '2.0'
 
 standart_welcome = "Приветствуем в беседе!"
