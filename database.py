@@ -3,6 +3,7 @@ import aiosqlite
 from configs.settings import standart_welcome
 from utils import get_info
 
+
 async def create_chat_in_db(chat_id: int | str, start_info: tuple):
     """
     Создает таблицу чата в БД
@@ -245,6 +246,7 @@ async def change_warns(chat_id: int | str, user_id: int | str, action: str):
         if action.startswith('-'):
             await groups_db.execute(f"UPDATE chat_{get_info.get_chat_db_id(chat_id)} SET warns = warns - {1} WHERE id = ?", (user_id,))
             await groups_db.commit()
+        
         elif action.startswith('+'):
             await groups_db.execute(f"UPDATE chat_{get_info.get_chat_db_id(chat_id)} SET warns = warns + {1} WHERE id = ?", (user_id,))
             await groups_db.commit()
