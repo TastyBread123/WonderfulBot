@@ -1,4 +1,4 @@
-from aiogram.filters import Text
+from aiogram.filters.text import Text
 from aiogram import Router, types, F
 from filters.chat_type import ChatTypeFilter
 

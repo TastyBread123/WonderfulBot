@@ -1,5 +1,5 @@
 from aiogram import Router, types, Bot  
-from aiogram.filters import ChatMemberUpdatedFilter, IS_MEMBER, IS_NOT_MEMBER
+from aiogram.filters.chat_member_updated import ChatMemberUpdatedFilter, IS_MEMBER, IS_NOT_MEMBER
 
 from database import is_user_exists_chat_db, get_config_data, add_user
 from filters.chat_type import ChatTypeFilter

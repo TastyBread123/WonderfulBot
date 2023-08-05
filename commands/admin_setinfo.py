@@ -1,5 +1,5 @@
 from aiogram import Router, types
-from aiogram.filters import Command, CommandObject
+from aiogram.filters.command import Command, CommandObject
 
 from filters.chat_type import ChatTypeFilter
 from database import get_admin_lvl, get_config_data, set_config_data, set_member_chat_info

@@ -1,6 +1,6 @@
 from aiogram import Router, types
-from aiogram.filters import Command, CommandObject
 from aiogram.exceptions import TelegramForbiddenError, TelegramBadRequest
+from aiogram.filters.command import Command, CommandObject
 
 from filters.chat_type import ChatTypeFilter
 from database import get_admin_lvl, add_user, is_user_exists_chat_db

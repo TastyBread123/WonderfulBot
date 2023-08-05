@@ -1,6 +1,6 @@
 from aiogram import Router, types
-from aiogram.filters import Command, CommandObject
 from aiogram.types import FSInputFile
+from aiogram.filters.command import Command, CommandObject
 
 from gtts import gTTS
 from random import randint

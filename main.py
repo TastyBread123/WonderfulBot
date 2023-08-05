@@ -3,7 +3,7 @@ import logging
 from asyncio import run
 from aiogram import Dispatcher, Bot
 
-from configs.settings import *
+from configs.settings import token
 from commands import command_routers
 from events import event_routers
 

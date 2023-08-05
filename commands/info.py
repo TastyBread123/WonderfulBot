@@ -1,7 +1,7 @@
-from aiogram.filters import Command
 from aiogram import Router, types
-from filters.chat_type import ChatTypeFilter
+from aiogram.filters.command import Command
 
+from filters.chat_type import ChatTypeFilter
 from configs.settings import version, tg_channel
 from configs.commands import admin_cmds_1lvl, admin_cmds_2lvl, admin_cmds_3lvl, admin_cmds_4lvl, admin_cmds_5lvl
 from database import get_admin_lvl
