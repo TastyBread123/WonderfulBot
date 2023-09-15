@@ -1,5 +1,5 @@
 token = ''
-dir = r'C:\'
+dir = r'C:\\'
 version = '3.3'
 admins_id = []
 
