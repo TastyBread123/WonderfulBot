@@ -27,7 +27,6 @@ async def kick_member(message: types.Message):
     admin_lvl_member = await get_admin_lvl(message.chat.id, message.reply_to_message.from_user.id)
     if admin_lvl_member >= admin_lvl: return await message.reply("⚠️ *Вы не можете наказать данного пользователя!*", parse_mode='Markdown')
 
-        
     try: await message.chat.ban(message.reply_to_message.from_user.id, 30)
     except TelegramBadRequest: return await message.reply("❌ *Вы не можете кикнуть данного пользователя!*", parse_mode='Markdown')
              
@@ -55,7 +54,6 @@ async def mute_member(message: types.Message, command: CommandObject):
     admin_lvl_member = await get_admin_lvl(message.chat.id, message.reply_to_message.from_user.id)
     if admin_lvl_member >= admin_lvl: return await message.reply("⚠️ *Вы не можете наказать данного пользователя!*", parse_mode='Markdown')
 
-        
     mute_time = command.args
     if mute_time is None or mute_time == False or mute_time == '': return await message.reply("⚠️ Неверный синтаксис!\nИспользуйте: */mute <время в минутах>*!", parse_mode='Markdown')
 
@@ -114,12 +112,11 @@ async def ban_member(message: types.Message, command: CommandObject):
     admin_lvl_member = await get_admin_lvl(message.chat.id, message.reply_to_message.from_user.id)
     if admin_lvl_member >= admin_lvl: return await message.reply("⚠️ *Вы не можете наказать данного пользователя!*", parse_mode='Markdown')
 
-            
     until_date = command.args
-    if until_date is None or until_date == False or until_date == '': return await message.reply("⚠️ Неверный синтаксис!\nИспользуйте: */ban <срок в днях>*!", parse_mode='Markdown')
-                            
+    if until_date is None or len(until_date.strip()) == 0: return await message.reply("⚠️ Неверный синтаксис!\nИспользуйте: */ban <срок в днях>*!", parse_mode='Markdown')
+
     is_vip = await get_member_chat_info(message.chat.id, message.reply_to_message.from_user.id)
-    if is_vip is not None and int(is_vip[5]) == 1 and int(until_date) > 10: return await message.reply('⚠️ Вы не можете забанить человека с VIP статусом более чем на 10 дней!')
+    if is_vip is not (None or False) and int(is_vip[5]) == 1 and int(until_date) > 10: return await message.reply('⚠️ Вы не можете забанить человека с VIP статусом более чем на 10 дней!')
     
     try: await message.chat.ban(message.reply_to_message.from_user.id, until_date=time() + int(until_date)*86400)
     except TelegramBadRequest: return await message.reply("❌ *Вы не можете забанить данного пользователя!*", parse_mode= "Markdown")
