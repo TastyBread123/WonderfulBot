@@ -1,4 +1,3 @@
-from aiogram.filters.text import Text
 from aiogram import Router, types, F
 from filters.chat_type import ChatTypeFilter
 
@@ -7,7 +6,7 @@ from database import get_config_data, add_message_chat_user, add_user
 router = Router()
 
 
-@router.message(ChatTypeFilter(chat_type=["group", "supergroup"]), Text('правила', ignore_case=True))
+@router.message(ChatTypeFilter(chat_type=["group", "supergroup"]), F.text == 'Правила')
 async def rules_message_handler(message: types.Message):
     welcome = await get_config_data(message.chat.id)
     if welcome is None: return await message.reply('👋 Создатель беседы еще не зарегистрировал бота и не добавил правила')
