@@ -241,15 +241,10 @@ async def change_warns(chat_id: int | str, user_id: int | str, action: str):
     """
 
     async with aiosqlite.connect('groups.db', check_same_thread=False) as groups_db:
-        if action.startswith('-'):
-            await groups_db.execute(f"UPDATE chat_{str(chat_id)[1:-1]} SET warns = warns - {1} WHERE id = ?", (user_id,))
-            await groups_db.commit()
-        
-        elif action.startswith('+'):
-            await groups_db.execute(f"UPDATE chat_{str(chat_id)[1:-1]} SET warns = warns + {1} WHERE id = ?", (user_id,))
-            await groups_db.commit()
+        await groups_db.execute(f"UPDATE chat_{str(chat_id)[1:-1]} SET warns = warns {action[0]} {1} WHERE id = ?", (user_id,))
+        await groups_db.commit()
     
-        current_level = await groups_db.execute(f"SELECT warns FROM chat_{str(chat_id)[1:-1]} WHERE id = ?", (user_id,))
-        current_level = await current_level.fetchone()[0]
+        current_warns = await groups_db.execute(f"SELECT warns FROM chat_{str(chat_id)[1:-1]} WHERE id = ?", (user_id,))
+        current_warns = await current_warns.fetchone()
     
-    return current_level
+    return current_warns[0]

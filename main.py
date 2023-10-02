@@ -8,6 +8,7 @@ from commands import command_routers
 from events import event_routers
 
 
+
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token, parse_mode='HTML')
 dp = Dispatcher()

@@ -46,3 +46,4 @@ async def ahelp(message: types.Message):
     for i in admin_cmds_5lvl: text5+=f'{i} {admin_cmds_5lvl[i]}\n'
         
     return await message.reply(f'1 уровень:\n{text1}\n2 уровень:\n{text2}\n3 уровень:\n{text3}\n4 уровень:\n{text4}\n5 уровень:\n{text5}', parse_mode='Markdown')
+
