@@ -144,7 +144,7 @@ async def set_nick_member(message: types.Message, command: CommandObject):
 
     if message.reply_to_message is not None:
         new_status = command.args
-        if new_status is None or new_status.isdecimal() == False: return await message.reply('⚠️ *Вы неверно используете команду!\nПравильное использование: /setnick <новый ник>*', parse_mode='Markdown')
+        if new_status is None: return await message.reply('⚠️ *Вы неверно используете команду!\nПравильное использование: /setnick <новый ник>*', parse_mode='Markdown')
         user = message.reply_to_message.from_user
     
     else:

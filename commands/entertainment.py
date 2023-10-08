@@ -24,7 +24,7 @@ async def bot_write_cmd(message: types.Message, command: CommandObject):
     :text - текст для сообщения
     """
 
-    if command.args.strip() is None: return await message.reply('⚠️ Неверный синтаксис!\n\nИспользуйте: */write <текст>*', parse_mode='Markdown')
+    if command.args is None: return await message.reply('⚠️ Неверный синтаксис!\n\nИспользуйте: */write <текст>*', parse_mode='Markdown')
     if len(command.args) >= 256: return await message.reply('⚠️ Нельзя использовать *более 256 символов*!', parse_mode='Markdown')
 
     await message.delete()
@@ -42,7 +42,7 @@ async def bot_say_cmd(message: types.Message, command: CommandObject):
     :text - текст для сообщения
     """
 
-    if command.args.strip() is None: return await message.reply('⚠️ Неверный синтаксис!\n\nИспользуйте: */say <текст>*', parse_mode='Markdown')
+    if command.args is None: return await message.reply('⚠️ Неверный синтаксис!\n\nИспользуйте: */say <текст>*', parse_mode='Markdown')
     if len(command.args) >= 128: return await message.reply('⚠️ Нельзя использовать *более 128 символов*!', parse_mode='Markdown')
         
     try:
@@ -102,7 +102,7 @@ async def chance(message: types.Message, command: CommandObject):
     elif resul_rand >=10: emoji='😢'
     elif resul_rand <=9: emoji='😭'
 
-    return await message.answer(f'{emoji} {hlink(member_info[3], message.from_user.url)}, я думаю, что шанс того, что  {hcode(command.args)}, равен <b>{resul_rand}%</b>', parse_mode= "HTML")
+    return await message.answer(f'{emoji} {hlink(member_info[3] if member_info is not None else message.from_user.first_name, message.from_user.url)}, я думаю, что шанс того, что  {hcode(command.args)}, равен <b>{resul_rand}%</b>', parse_mode= "HTML")
 
 # /random
 @router.message(ChatTypeFilter(chat_type=["group", "supergroup"]), Command('random', 'rand'))
